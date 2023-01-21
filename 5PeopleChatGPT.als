@@ -124,4 +124,9 @@ fact "The man who smokes Blends has a neighbor who drinks water" {
  all p1,p2 : Person | p1.smoke = Blends && p2.drink = Water => p2.position in p1.nextTo
 }
 
-run {} for 4 but 4 int, 4 seq expect 1
+pred GPTAnswer {
+	all p: German | p.drink=Water
+	all p: Person | p.smoke = Dunhill => p.color = Yellow
+	all p1:Person , p2 : German | p1.smoke = BlueMaster => p2.position in p1.nextTo
+}
+run GPTAnswer for 4 but 4 int, 4 seq expect 1

@@ -67,13 +67,13 @@ fact "Position to the left of" {
 	 #p.leftOf = 1 && One in p.leftOf
 }
  all p : Person | p.position = Three =>{
-	 #p.leftOf = 1 && Two in p.leftOf
+	 #p.leftOf = 2 && One in p.leftOf && Two in p.leftOf
 }
  all p : Person | p.position = Four =>{
-	 #p.leftOf = 1 && Three in p.leftOf
+	 #p.leftOf = 3 && One in p.leftOf && Two in p.leftOf && Three in p.leftOf
 }
  all p : Person | p.position = Five =>{
-	 #p.leftOf = 1&& Four in p.leftOf
+	 #p.leftOf = 4 && One in p.leftOf && Two in p.leftOf && Three in p.leftOf && Four in p.leftOf
 }
 }
 

@@ -10,6 +10,10 @@ https://alloy.readthedocs.io/
 https://esb-dev.github.io/mat/alloy-cheatsheet.pdf
 
 https://www.youtube.com/watch?v=FvNRlE4E9QQ
+
+https://www.aosabook.org/en/500L/the-same-origin-policy.html
+
+https://alloytools.org/book.html
 ## Puzzle
 
 ![image](https://user-images.githubusercontent.com/36188103/213883851-7644f7c0-ecde-4256-9c4f-1c214a040ca0.png)

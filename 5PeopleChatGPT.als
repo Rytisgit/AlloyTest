@@ -6,7 +6,7 @@ drink: disj  one Drink,
 smoke:  disj one Smoke,
 nextTo: set Position,
 notNextTo: set Position,
-rightOf: lone Position,
+leftOf: set Position,
 }
 one sig Brit, Norwegian, German, Swede, Dane extends Person {}
 enum Color { Red, Blue, Green,White,Yellow }
@@ -59,21 +59,21 @@ fact "Position Nextness" {
 	p.nextTo = {Four}
 }
 }
-fact "Position to The Right Of" {
+fact "Position to the left of" {
  all p : Person | p.position = One =>{
-	p.rightOf = none
+	p.leftOf = none
 }
  all p : Person | p.position = Two =>{
-	 p.rightOf = One
+	 #p.leftOf = 1 && One in p.leftOf
 }
  all p : Person | p.position = Three =>{
-	 p.rightOf = Two
+	 #p.leftOf = 2 && One in p.leftOf && Two in p.leftOf
 }
  all p : Person | p.position = Four =>{
-	p.rightOf = Three
+	 #p.leftOf = 3 && One in p.leftOf && Two in p.leftOf && Three in p.leftOf
 }
  all p : Person | p.position = Five =>{
-	p.rightOf = Four
+	 #p.leftOf = 4 && One in p.leftOf && Two in p.leftOf && Three in p.leftOf && Four in p.leftOf
 }
 }
 
@@ -86,9 +86,11 @@ fact "The Swede keeps dogs as pets" {
 fact "The Dane drinks tea" {
  all p : Dane | p.drink = Tea
 }
-fact "The Green house is on the left of the white house" { //maybe on the left is 1-3 instead of just 3 if the position is 4
- all p1,p2 : Person | p1.color = Green && p1.rightOf in p2.position => p2.color  = White
+fact "The Green house is on the left of the white house" { //failed
+ all p1 : Person |  p1.color = White =>{ some p1.leftOf}
+ all p1,p2 : Person |  p1.color = White &&  p2.position in p1.leftOf  =>{ p2.color  = Green}
 }
+
 fact "The Owner of the green house drink coffee" {
  all p : Person | p.color = Green => p.drink = Coffee
 }
@@ -105,7 +107,7 @@ fact "The Norwegian lives in the first house" {
  all p : Norwegian | p.position = One
 }
 fact "The man who smokes Blends lives next to the one who keeps cats" {
- all p1,p2 : Person | p1.smoke = Blends && p2.position in p1.nextTo => p2.pet = Cat
+ all p1,p2 : Person |  p1.smoke = Blends && p2.position in p1.nextTo => p2.pet = Cat
 }
 fact "The man who keeps horses lives next to the man who smokes Dunhill" {
  all p1,p2 : Person | p1.pet = Horse && p2.position in p1.nextTo => p2.smoke = Dunhill
@@ -120,5 +122,6 @@ fact "The German smokes Prince" {
 //fact "The Norwegian lives next to the blue house" {
 // all p1: Norwegian, p2 : Person | p2.position in p1.nextTo => p2.color = Blue}
 fact "The man who smokes Blends has a neighbor who drinks water" {
- all p1,p2 : Person | p1.smoke = Blends && p2.position in p1.nextTo => p2.drink = Water}
+ all p1,p2 : Person | p1.smoke = Blends && p2.position in p1.nextTo => p2.drink = Water
+}
 run {} for 4 but 4 int, 4 seq expect 1

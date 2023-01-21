@@ -1,6 +1,13 @@
 # AlloyTest
 Learning about alloy by solving a riddle created in ChatGPT by FlugKiller. Initially when trying manually I thought it was impossible, but after figuring out the bugs and how alloy works, I got a solution. 
 
+Alloy docs reference: 
+
+https://www.monperrus.net/martin/alloy-quick-ref.pdf
+
+https://alloy.readthedocs.io/
+
+https://esb-dev.github.io/mat/alloy-cheatsheet.pdf
 ## Puzzle
 
 ![image](https://user-images.githubusercontent.com/36188103/213883851-7644f7c0-ecde-4256-9c4f-1c214a040ca0.png)

@@ -52,13 +52,13 @@ fact "Position to the left of" {
 	 #p.leftOf = 1 && One in p.leftOf
 }
  all p : Person | p.position = Three =>{
-	 #p.leftOf = 2 && One in p.leftOf && Two in p.leftOf
+	 #p.leftOf = 1 && Two in p.leftOf
 }
  all p : Person | p.position = Four =>{
-	 #p.leftOf = 3 && One in p.leftOf && Two in p.leftOf && Three in p.leftOf
+	 #p.leftOf = 1 &&  Three in p.leftOf
 }
  all p : Person | p.position = Five =>{
-	 #p.leftOf = 4 && One in p.leftOf && Two in p.leftOf && Three in p.leftOf && Four in p.leftOf
+	 #p.leftOf = 1 && Four in p.leftOf
 }
 }
 
@@ -91,10 +91,10 @@ fact "The Norwegian lives in the first house" {
  all p : Norwegian | p.position = One
 }
 fact "The man who smokes Blends lives next to the one who keeps cats" {
- all p1,p2 : Person |  p1.smoke = Blends && p2.pet = Cat => p2.position in p1.nextTo
+ all p1,p2 : Person |  p1.smoke = Blends && p2.pet = Cat => p1.position in p2.nextTo
 }
 fact "The man who keeps horses lives next to the man who smokes Dunhill" {
- all p1,p2 : Person | p1.pet = Horse && p2.smoke = Dunhill => p2.position in p1.nextTo
+ all p1,p2 : Person | p1.pet = Horse && p2.smoke = Dunhill => p1.position in p2.nextTo
 }
 fact "The man who smokes Blue Master drinks beer" {
  all p : Person | p.smoke = BlueMaster => p.drink = Beer
